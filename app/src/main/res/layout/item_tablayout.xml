@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <com.tomeokin.widget.jotablayout.TabView
+      android:id="@+id/tabView"
+      android:layout_width="60dp"
+      android:layout_height="48dp"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="16dp"
+      android:paddingBottom="4dp"
+      android:paddingTop="4dp"
+      app:tabIconNormal="@drawable/tab_contact_unselect"
+      app:tabIconSelected="@drawable/tab_contact_select"
+      app:tabTextSize="10sp"
+      app:tabTitle="联系人"
+      />
+
+</merge>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="TabView">
+    <!-- 如果 tabIconNormal 和 tabIconSelected 只设置一个，则必须设置 tabIconNormal -->
+    <!-- 如果两个都没有设置，则不显示图片 -->
+    <attr name="tabIconNormal" format="reference"/>
+    <attr name="tabIconSelected" format="reference"/>
+    <attr name="tabIconGravity">
+      <flag name="LEFT" value="0"/>
+      <flag name="TOP" value="1"/>
+      <flag name="RIGHT" value="2"/>
+      <flag name="BOTTOM" value="3"/>
+    </attr>
+
+    <!-- 如果没有设置标题，则忽略 -->
+    <!-- 标题和图标至少要设置其中一个 -->
+    <attr name="tabTitle" format="string"/>
+    <attr name="tabTextSize" format="dimension"/>
+    <attr name="textColorNormal" format="color"/>
+    <attr name="textColorSelected" format="color"/>
+
+    <attr name="internalPadding" format="dimension"/>
+    <attr name="alphaTransformEnabled" format="boolean"/>
+  </declare-styleable>
+
+  <declare-styleable name="JoTabLayout">
+    <!-- underline -->
+    <attr name="underlineColor" format="color"/>
+    <attr name="underlineHeight" format="dimension"/>
+    <attr name="underlineGravity">
+      <flag name="TOP" value="1"/>
+      <flag name="BOTTOM" value="3"/>
+    </attr>
+
+    <!-- divider -->
+    <attr name="dividerColor" format="color"/>
+    <attr name="dividerWidth" format="dimension"/>
+    <attr name="dividerVerticalPadding" format="dimension"/>
+
+    <!-- indicator -->
+    <attr name="indicatorColor" format="color"/>
+    <attr name="indicatorWidth" format="dimension"/>
+    <attr name="indicatorHeight" format="dimension"/>
+    <attr name="indicatorCornerRadius" format="dimension"/>
+    <attr name="indicatorGravity">
+      <flag name="TOP" value="1"/>
+      <flag name="BOTTOM" value="3"/>
+    </attr>
+    <attr name="indicatorShape">
+      <flag name="NONE" value="0"/>
+      <flag name="LINE" value="1"/>
+      <flag name="TRIANGLE" value="2"/>
+      <flag name="SQUARE" value="3"/>
+    </attr>
+    <attr name="indicatorAnimDuration" format="integer"/>
+    <attr name="indicatorAnimEnabled" format="boolean"/>
+    <attr name="indicatorBounceEnabled" format="boolean"/>
+  </declare-styleable>
+</resources>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/grey300"
+        />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        />
+
+    <com.tomeokin.widget.jotablayout.JoTabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey300"
+        android:orientation="horizontal"
+        >
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_contact_unselect"
+          app:tabIconSelected="@drawable/tab_contact_select"
+          app:tabTitle="联系人"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_home_unselect"
+          app:tabIconSelected="@drawable/tab_home_select"
+          app:tabTitle="主页"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_speech_unselect"
+          app:tabIconSelected="@drawable/tab_speech_select"
+          app:tabTitle="会话"
+          />
+
+    </com.tomeokin.widget.jotablayout.JoTabLayout>
+
+    <com.tomeokin.widget.jotablayout.JoTabLayout
+        android:id="@+id/tabLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:indicatorShape="LINE"
+        >
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_contact_unselect"
+          app:tabIconSelected="@drawable/tab_contact_select"
+          app:tabTitle="联系人"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_home_unselect"
+          app:tabIconSelected="@drawable/tab_home_select"
+          app:tabTitle="主页"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_speech_unselect"
+          app:tabIconSelected="@drawable/tab_speech_select"
+          app:tabTitle="会话"
+          />
+
+    </com.tomeokin.widget.jotablayout.JoTabLayout>
+
+    <com.tomeokin.widget.jotablayout.JoTabLayout
+        android:id="@+id/tabLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey300"
+        android:orientation="horizontal"
+        >
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:alphaTransformEnabled="true"
+          app:tabIconNormal="@drawable/tab_contact_unselect"
+          app:tabIconSelected="@drawable/tab_contact_select"
+          app:tabTitle="联系人"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:alphaTransformEnabled="true"
+          app:tabIconNormal="@drawable/tab_home_unselect"
+          app:tabIconSelected="@drawable/tab_home_select"
+          app:tabTitle="主页"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:alphaTransformEnabled="true"
+          app:tabIconNormal="@drawable/tab_speech_unselect"
+          app:tabIconSelected="@drawable/tab_speech_select"
+          app:tabTitle="会话"
+          />
+
+    </com.tomeokin.widget.jotablayout.JoTabLayout>
+
+    <com.tomeokin.widget.jotablayout.JoTabLayout
+        android:id="@+id/tabLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:indicatorShape="TRIANGLE"
+        >
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:alphaTransformEnabled="true"
+          app:tabIconNormal="@drawable/tab_contact_unselect"
+          app:tabIconSelected="@drawable/tab_contact_select"
+          app:tabTitle="联系人"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:alphaTransformEnabled="true"
+          app:tabIconNormal="@drawable/tab_home_unselect"
+          app:tabIconSelected="@drawable/tab_home_select"
+          app:tabTitle="主页"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="48dp"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:alphaTransformEnabled="true"
+          app:tabIconNormal="@drawable/tab_speech_unselect"
+          app:tabIconSelected="@drawable/tab_speech_select"
+          app:tabTitle="会话"
+          />
+
+    </com.tomeokin.widget.jotablayout.JoTabLayout>
+
+  </LinearLayout>
+
+</ScrollView>
