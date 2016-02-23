@@ -1,7 +1,7 @@
 JoTabLayout
 ===========
 
-A TabLayout without a dependent of ViewPager.  
+A TabLayout without dependence of ViewPager.  
 
 Thanks for [CommonTabLayout][1] and [AlphaIndicatorView][2].  
 
