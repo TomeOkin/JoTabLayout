@@ -45,18 +45,23 @@ public class TwoFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    //setRetainInstance(true);
   }
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
+    Log.i("take", "onCreateView");
+
     if (savedInstanceState != null) {
+      Log.i("take", "savedInstanceState != null");
       mIndex = savedInstanceState.getInt(ARG_INDEX, 0);
       mText = savedInstanceState.getString(ARG_TEXT, "");
+      Log.i("take", "mIndex: " + mIndex);
+      Log.i("take", "mText: " + mText);
     }
 
-    Log.i("take", "onCreateView " + mText + " 第" + mIndex + "页");
     View view = inflater.inflate(R.layout.fragment_two, container, false);
     TextView textView = (TextView) view.findViewById(R.id.two_text);
     textView.setText(mText + " 第" + mIndex + "页");
@@ -68,5 +73,18 @@ public class TwoFragment extends Fragment {
     super.onSaveInstanceState(outState);
     outState.putInt(ARG_INDEX, mIndex);
     outState.putString(ARG_TEXT, mText);
+  }
+
+  @Override
+  public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+    super.onViewStateRestored(savedInstanceState);
+
+    if (savedInstanceState != null) {
+      Log.i("take", "savedInstanceState != null");
+      mIndex = savedInstanceState.getInt(ARG_INDEX, 0);
+      mText = savedInstanceState.getString(ARG_TEXT, "");
+      Log.i("take", "mIndex: " + mIndex);
+      Log.i("take", "mText: " + mText);
+    }
   }
 }

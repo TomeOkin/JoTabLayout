@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import com.tomeokin.common.activity.BaseActivity;
 import com.tomeokin.widget.jotablayout.JoTabLayout;
@@ -38,13 +39,14 @@ public class TabLayoutActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_tablayout);
 
+    Log.i("take", "activity->onCreate");
+
     mViewPager = (ViewPager) findViewById(R.id.viewPager);
     mTabLayout = (JoTabLayout) findViewById(R.id.tabLayout);
     final JoTabLayout tabLayout1 = (JoTabLayout) findViewById(R.id.tabLayout1);
     final JoTabLayout tabLayout2 = (JoTabLayout) findViewById(R.id.tabLayout2);
     final JoTabLayout tabLayout3 = (JoTabLayout) findViewById(R.id.tabLayout3);
 
-    mFragments.clear();
     for (int i = 0; i < mTabLayout.getTabCount(); i++) {
       mFragments.add(TwoFragment.newInstance("FrameLayout 2 ", i));
     }
@@ -84,35 +86,40 @@ public class TabLayoutActivity extends BaseActivity {
     tabLayout2.setOnTabSelectedListener(listener);
     tabLayout3.setOnTabSelectedListener(listener);
 
-    mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-      @Override
-      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        //mTabLayout.scrollTabTo(position, positionOffset);
-        //mTabLayout.scrollIndicatorTo(position, positionOffset);
+    mTabLayout.applyConfigurationWithViewPager(mViewPager, false);
+    tabLayout1.applyConfigurationWithViewPager(mViewPager, false);
+    tabLayout2.applyConfigurationWithViewPager(mViewPager, true);
+    tabLayout3.applyConfigurationWithViewPager(mViewPager, true);
 
-        tabLayout1.scrollIndicatorTo(position, positionOffset);
-        tabLayout2.scrollTabTo(position, positionOffset);
-        tabLayout3.scrollTabTo(position, positionOffset);
-        tabLayout3.scrollIndicatorTo(position, positionOffset);
-      }
-
-      @Override
-      public void onPageSelected(int position) {
-        // Log.i("take", "onPageSelected");
-        mTabLayout.setCurrentTab(position);
-        tabLayout1.setCurrentTab(position);
-        tabLayout2.setCurrentTab(position);
-        tabLayout3.setCurrentTab(position);
-      }
-
-      @Override
-      public void onPageScrollStateChanged(int state) {
-        //mTabLayout.updateState();
-
-        tabLayout1.updateState();
-        tabLayout3.updateState();
-      }
-    });
+    //mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    //  @Override
+    //  public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    //    //mTabLayout.scrollTabTo(position, positionOffset);
+    //    //mTabLayout.scrollIndicatorTo(position, positionOffset);
+    //
+    //    tabLayout1.scrollIndicatorTo(position, positionOffset);
+    //    tabLayout2.scrollTabTo(position, positionOffset);
+    //    tabLayout3.scrollTabTo(position, positionOffset);
+    //    tabLayout3.scrollIndicatorTo(position, positionOffset);
+    //  }
+    //
+    //  @Override
+    //  public void onPageSelected(int position) {
+    //    // Log.i("take", "onPageSelected");
+    //    mTabLayout.setCurrentTab(position);
+    //    tabLayout1.setCurrentTab(position);
+    //    tabLayout2.setCurrentTab(position);
+    //    tabLayout3.setCurrentTab(position);
+    //  }
+    //
+    //  @Override
+    //  public void onPageScrollStateChanged(int state) {
+    //    //mTabLayout.updateState();
+    //
+    //    tabLayout1.updateState();
+    //    tabLayout3.updateState();
+    //  }
+    //});
     mViewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
     mViewPager.setCurrentItem(1);
 
@@ -142,7 +149,7 @@ public class TabLayoutActivity extends BaseActivity {
       super(fm);
       fragments = new ArrayList<>();
       for (int i = 0; i < 3; i++) {
-        fragments.add(OneFragment.newInstance("ViewPager", i));
+        fragments.add(TwoFragment.newInstance("ViewPager", i));
       }
     }
 

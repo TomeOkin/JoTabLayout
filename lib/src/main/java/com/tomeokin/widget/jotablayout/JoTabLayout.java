@@ -27,6 +27,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -168,25 +169,73 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     mValueAnimator.addUpdateListener(this);
   }
 
+  /**
+   * 初始化状态部分
+   */
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
     mTabCount = getChildCount();
+
+    initTabsWithoutListener();
   }
 
-  private OnTabSelectedListener mListener;
-
-  public void setOnTabSelectedListener(OnTabSelectedListener listener) {
-    this.mListener = listener;
-    initTabs();
-  }
-
-  private void initTabs() {
+  private void initTabsWithoutListener() {
     TabView tabView;
     for (int i = 0; i < mTabCount; i++) {
       if (getChildAt(i) instanceof TabView) {
         tabView = (TabView) getChildAt(i);
         tabView.setTag(i);
+      }
+    }
+
+    setCurrentTab(0);
+  }
+
+  public void applyConfigurationWithViewPager(ViewPager viewPager, final boolean alphaTransformEnabled) {
+    viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override
+      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (mIndicatorShape != SHAPE_NONE && mIndicatorAnimEnabled) {
+          scrollIndicatorTo(position, positionOffset);
+        }
+
+        if (alphaTransformEnabled) {
+          scrollTabTo(position, positionOffset);
+        }
+      }
+
+      @Override
+      public void onPageSelected(int position) {
+        setCurrentTab(position);
+      }
+
+      @Override
+      public void onPageScrollStateChanged(int state) {
+        if (mIndicatorShape != SHAPE_NONE && mIndicatorAnimEnabled && mIndicatorBounceEnabled) {
+          updateState();
+        }
+      }
+    });
+  }
+
+  /**
+   * 添加监听器部分
+   */
+  private OnTabSelectedListener mListener;
+
+  public void setOnTabSelectedListener(OnTabSelectedListener listener) {
+    mListener = listener;
+    addOnTabSelectedListener();
+  }
+
+  private boolean mTabClickTrigger = true;
+
+  private void addOnTabSelectedListener() {
+    TabView tabView;
+    for (int i = 0; i < mTabCount; i++) {
+      if (getChildAt(i) instanceof TabView) {
+        tabView = (TabView) getChildAt(i);
         tabView.setOnClickListener(new OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -207,19 +256,21 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
         });
       }
     }
-
-    //TabView currentTabView = (TabView) getChildAt(mCurrentTab);
-    //currentTabView.setAlphaTransform(1);
   }
 
-  private boolean mTabClickTrigger = true;
+  public int getCurrentTab() {
+    return mCurrentTab;
+  }
 
+  /**
+   * 更新选中状态部分
+   */
   public void setCurrentTab(int index) {
     if (index >= mTabCount) {
-      throw new IllegalArgumentException("index 必须小于 tabCount");
+      throw new IllegalArgumentException("index must be smaller than tabCount");
     }
 
-    if (index == mCurrentTab && mLastTab != -1) {
+    if (mLastTab != -1 && index == mCurrentTab) {
       return;
     }
 
@@ -290,7 +341,7 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
    */
   public void scrollTabTo(int position, float positionOffset) {
     if (position + 1 > mTabCount) {
-      throw new IllegalArgumentException("position 必须小于 tabCount");
+      throw new IllegalArgumentException("position must be smaller than tabCount");
     }
 
     // onScroll: position = min(source, dest), positionOffset = [0, 1]

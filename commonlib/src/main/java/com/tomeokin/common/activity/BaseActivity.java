@@ -34,6 +34,17 @@ public abstract class BaseActivity extends AppCompatActivity {
       }
     }
 
+    // 用于解决选择屏幕后 Fragment 重建带来的残影问题
+    Fragment fragment;
+    for (int i = 0; i < getFragments().size(); i++) {
+      if (i != index) {
+        fragment = fm.findFragmentByTag(makeFragmentName(getFragmentContainerId(), i));
+        if (fragment != null) {
+          ft.hide(fragment);
+        }
+      }
+    }
+
     String name = makeFragmentName(getFragmentContainerId(), index);
     Fragment instance = fm.findFragmentByTag(name);
     if (instance == null) {
