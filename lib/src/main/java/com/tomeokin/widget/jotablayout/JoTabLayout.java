@@ -70,6 +70,7 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
   private float mIndicatorCornerRadius = 0; // dp
   private int mIndicatorGravity = GRAVITY_TOP;
   private int mIndicatorShape = SHAPE_NONE;
+  private int mIndicatorAnimOffset = 0; // indicator horizontal offset when animation
 
   private int mIndicatorAnimDuration = 0;
   private boolean mIndicatorAnimEnabled = true;
@@ -192,7 +193,8 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     setCurrentTab(0);
   }
 
-  public void applyConfigurationWithViewPager(ViewPager viewPager, final boolean alphaTransformEnabled) {
+  public void applyConfigurationWithViewPager(ViewPager viewPager,
+      final boolean alphaTransformEnabled) {
     viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override
       public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -327,12 +329,7 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
   public void onAnimationUpdate(ValueAnimator animation) {
     View currentTabView = getChildAt(mCurrentTab);
     IndicatorPoint p = (IndicatorPoint) animation.getAnimatedValue();
-    mIndicatorRect.left = (int) p.left;
-    mIndicatorRect.right = (int) p.right;
-
-    float indicatorLeft = p.left + (currentTabView.getWidth() - mIndicatorWidth) / 2;
-    mIndicatorRect.left = (int) indicatorLeft;
-    mIndicatorRect.right = (int) (mIndicatorRect.left + mIndicatorWidth);
+    mIndicatorAnimOffset = (int) p.left - currentTabView.getLeft();
     invalidate();
   }
 
@@ -361,10 +358,14 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
    */
   public void scrollIndicatorTo(int position, float positionOffset) {
     TabView tabView = (TabView) getChildAt(position);
-    mIndicatorRect.left = tabView.getLeft()
+    TabView currentView = (TabView) getChildAt(mCurrentTab);
+
+    // 修正默认的增量
+    mIndicatorAnimOffset = tabView.getLeft()
         + (int) ((tabView.getWidth() - mIndicatorWidth) / 2)
-        + (int) (tabView.getWidth() * positionOffset);
-    mIndicatorRect.right = mIndicatorRect.left + (int) mIndicatorWidth;
+        + (int) (tabView.getWidth() * positionOffset)
+        - currentView.getLeft()
+        - (int) ((currentView.getWidth() - mIndicatorWidth) / 2);
 
     if (!mTabClickTrigger) {
       mValueAnimator.setInterpolator(null);
@@ -385,8 +386,6 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
   public int getTabCount() {
     return getChildCount();
   }
-
-  private boolean mIsFirstDraw = true;
 
   @Override
   protected void onDraw(Canvas canvas) {
@@ -422,15 +421,9 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
       }
     }
 
-    // draw indicator
-    if (mIndicatorShape != SHAPE_NONE && mIndicatorAnimEnabled) {
-      if (mIsFirstDraw) {
-        mIsFirstDraw = false;
-        calIndicatorRect();
-      }
-    } else {
-      calIndicatorRect();
-    }
+    calIndicatorRect();
+    mIndicatorRect.left += mIndicatorAnimOffset;
+    mIndicatorRect.right = mIndicatorRect.left + (int) mIndicatorWidth;
 
     if (mIndicatorShape != SHAPE_NONE) {
       if (mIndicatorShape == SHAPE_TRIANGLE) {

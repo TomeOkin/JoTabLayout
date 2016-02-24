@@ -21,7 +21,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import com.tomeokin.common.activity.BaseActivity;
 import com.tomeokin.widget.jotablayout.JoTabLayout;
@@ -38,8 +37,6 @@ public class TabLayoutActivity extends BaseActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_tablayout);
-
-    Log.i("take", "activity->onCreate");
 
     mViewPager = (ViewPager) findViewById(R.id.viewPager);
     mTabLayout = (JoTabLayout) findViewById(R.id.tabLayout);
