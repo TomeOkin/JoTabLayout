@@ -12,7 +12,14 @@ Download
 
 Gradle:
 ```
-
+allprojects {
+  repositories {
+    jcenter()
+  }
+}
+dependencies {
+  compile 'com.tomeokin.widget.jotablayout:lib:1.0.1@aar'
+}
 ```
 
 
