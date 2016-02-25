@@ -14,6 +14,85 @@ Demo
 
 
 
+Usage
+-----
+
+- ** XML **
+
+```xml
+<com.tomeokin.widget.jotablayout.JoTabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        >
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_contact_unselect"
+          app:tabIconSelected="@drawable/tab_contact_select"
+          app:textColorNormal="@color/grey800"
+          app:textColorSelected="@color/lightBlue700"
+          app:tabTitle="联系人"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_home_unselect"
+          app:tabIconSelected="@drawable/tab_home_select"
+          app:textColorNormal="@color/grey800"
+          app:textColorSelected="@color/lightBlue700"
+          app:tabTitle="主页"
+          />
+
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_speech_unselect"
+          app:tabIconSelected="@drawable/tab_speech_select"
+          app:textColorNormal="@color/grey800"
+          app:textColorSelected="@color/lightBlue700"
+          app:tabTitle="会话"
+          />
+
+</com.tomeokin.widget.jotablayout.JoTabLayout>
+```
+
+- ** Java **
+
+```java
+mTabLayout.setOnTabSelectedListener(new OnTabSelectedListener() {
+      @Override
+      public void onTabSelect(View view, int position) {
+        if (mViewPager != null) {
+          mViewPager.setCurrentItem(position, false);
+        }
+        setCurrentFragment(position);
+      }
+
+      @Override
+      public void onTabReselect(View view, int position) {
+
+      }
+    });
+mTabLayout.applyConfigurationWithViewPager(mViewPager, alphaTransformEnabled);
+```
+
+*The above example extract from activity_tablayout.xml and TabLayoutActivity.java, a little changed.*
+
+
+
 Download
 --------
 
