@@ -26,6 +26,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -196,7 +197,7 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     setCurrentTab(0);
   }
 
-  public void applyConfigurationWithViewPager(ViewPager viewPager,
+  public void applyConfigurationWithViewPager(@NonNull final ViewPager viewPager,
       final boolean alphaTransformEnabled) {
     viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override
@@ -222,6 +223,22 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
         }
       }
     });
+
+    // 如果没有设置监听器，则设置一个默认的监听器
+    if (mListener == null) {
+      mListener = new OnTabSelectedListener() {
+        @Override
+        public void onTabSelect(View view, int position) {
+          viewPager.setCurrentItem(position, false);
+        }
+
+        @Override
+        public void onTabReselect(View view, int position) {
+
+        }
+      };
+      addOnTabSelectedListener();
+    }
   }
 
   /**
