@@ -178,15 +178,16 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     super.onFinishInflate();
     mTabCount = getChildCount();
 
-    initTabsWithoutListener();
+    initTabsWithListener();
   }
 
-  private void initTabsWithoutListener() {
+  private void initTabsWithListener() {
     TabView tabView;
     for (int i = 0; i < mTabCount; i++) {
       if (getChildAt(i) instanceof TabView) {
         tabView = (TabView) getChildAt(i);
         tabView.setTag(i);
+        tabView.setOnClickListener(null);
       }
     }
 

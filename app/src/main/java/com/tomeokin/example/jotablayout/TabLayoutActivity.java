@@ -145,7 +145,7 @@ public class TabLayoutActivity extends BaseActivity {
     public MainAdapter(FragmentManager fm) {
       super(fm);
       fragments = new ArrayList<>();
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < mTabLayout.getTabCount(); i++) {
         fragments.add(TwoFragment.newInstance("ViewPager", i));
       }
     }
