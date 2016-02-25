@@ -97,6 +97,8 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     super(context, attrs, defStyleAttr);
 
     setWillNotDraw(false); // 没有重载 onMeasure 时，需要手动设置，否则 onDraw 不会被调用
+    setClipChildren(false);
+    setClipToPadding(false);
 
     // init default values
 

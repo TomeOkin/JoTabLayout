@@ -10,7 +10,7 @@ Thanks for [CommonTabLayout][1] and [AlphaIndicatorView][2].
 Demo
 ----
 
-<img src="screen/ScreenGif.gif">
+![Demo](screen/ScreenGif.gif)
 
 
 
