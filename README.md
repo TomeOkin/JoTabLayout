@@ -17,7 +17,7 @@ Demo
 Usage
 -----
 
-- ** XML **
+- **XML**
 
 ```xml
 <com.tomeokin.widget.jotablayout.JoTabLayout
@@ -69,7 +69,7 @@ Usage
 </com.tomeokin.widget.jotablayout.JoTabLayout>
 ```
 
-- ** Java **
+- **Java**
 
 ```java
 mTabLayout.setOnTabSelectedListener(new OnTabSelectedListener() {
