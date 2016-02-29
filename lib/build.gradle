@@ -6,7 +6,7 @@ def siteUrl = 'https://github.com/tomeokin/JoTabLayout'
 def gitUrl = 'https://github.com/tomeokin/JoTabLayout.git'
 
 group = "com.tomeokin.widget.jotablayout"
-version = "1.0.1"
+version = "1.0.2"
 
 android {
   compileSdkVersion 23
@@ -15,7 +15,7 @@ android {
   defaultConfig {
     minSdkVersion 15
     targetSdkVersion 23
-    versionCode 3
+    versionCode 4
     versionName version
   }
   buildTypes {
@@ -104,9 +104,9 @@ bintray {
     repo = "maven"
     name = "JoTabLayout" //发布到JCenter上的项目名字
     version {
-      name = '1.0.1'
+      name = '1.0.2'
       desc = 'A TabLayout without a dependent of ViewPager.'
-      vcsTag = '1.0.1'
+      vcsTag = '1.0.2'
     }
     websiteUrl = siteUrl
     vcsUrl = gitUrl
