@@ -10,7 +10,9 @@ Thanks for [CommonTabLayout][1] and [AlphaIndicatorView][2].
 Demo
 ----
 
-![Demo](screen/ScreenGif.gif)
+![TabView](art/TabView.gif)
+
+![JoTabLayout](art/JoTabLayout.gif)
 
 
 
