@@ -274,13 +274,17 @@ public class TabView extends View {
 
       // 默认情况下，textAlign 为 Paint.Align.LEFT，绘制文本时，x 为左上角 x 坐标，y 为 baseline 值
       // 如果 textAlign 为 Paint.Align.CENTER，绘制文本时，x 为文本的水平中心 x 坐标，y 为 baseline 值
-      // 相对于基线对齐时，mTextBound.height() + mFmi.bottom 是字体的高
-      // 故将文字向上修正 mFmi.bottom / 2 实现垂直居中
-      canvas.drawText(mTitle, mTextBound.left, mTextBound.bottom - mFmi.bottom / 2, mTextPaint);
+      // see [amulyakhare/TextDrawable](https://github.com/amulyakhare/TextDrawable)
+      // TextDrawable.onDraw()
+      //canvas.drawText(mTitle, mTextBound.left, mTextBound.bottom - mFmi.bottom / 2, mTextPaint);
+      canvas.drawText(mTitle, mTextBound.left, (mTextBound.bottom + mTextBound.top) / 2
+          - (mTextPaint.descent() + mTextPaint.ascent()) / 2, mTextPaint);
 
       mTextPaint.setColor(mTextColorSelected);
       mTextPaint.setAlpha(alpha); // setAlpha 应该在 setColor 之后设置
-      canvas.drawText(mTitle, mTextBound.left, mTextBound.bottom - mFmi.bottom / 2, mTextPaint);
+      //canvas.drawText(mTitle, mTextBound.left, mTextBound.bottom - mFmi.bottom / 2, mTextPaint);
+      canvas.drawText(mTitle, mTextBound.left, (mTextBound.bottom + mTextBound.top) / 2
+          - (mTextPaint.descent() + mTextPaint.ascent()) / 2, mTextPaint);
     }
   }
 

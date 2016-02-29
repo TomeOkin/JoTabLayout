@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">JoTabLayout</string>
+  <string name="tab_view">TabView</string>
 </resources>
