@@ -22,8 +22,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.os.Build;
-import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
@@ -61,7 +59,6 @@ public class TabView extends View {
   private Rect mIconRect = new Rect(); // 图标绘制区域
   private Paint mTextPaint = new Paint(); // 描述文本的画笔
   private Rect mTextBound; // 描述文本矩形测量大小
-  private Paint.FontMetricsInt mFmi; // 用于获取字体的各种属性
 
   public TabView(Context context) {
     this(context, null);
@@ -126,7 +123,6 @@ public class TabView extends View {
       mIconPaint.setFilterBitmap(true); // 绘制动画时忽略抗锯齿
       mTextPaint.setDither(true); // 使用抖动处理
       mTextPaint.getTextBounds(mTitle, 0, mTitle.length(), mTextBound);
-      mFmi = mTextPaint.getFontMetricsInt();
     }
   }
 
@@ -134,10 +130,10 @@ public class TabView extends View {
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-    calDrawBorder();
+    updateDrawBorder();
   }
 
-  private void calDrawBorder() {
+  private void updateDrawBorder() {
     initText();
 
     if (TextUtils.isEmpty(mTitle) && mIconNormal == null) {
@@ -237,10 +233,6 @@ public class TabView extends View {
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
 
-    //if (isInEditMode()) {
-    //    return;
-    //}
-
     int alpha = (int) Math.ceil(mAlpha * 255);
     if (!mAlphaTransformEnabled && alpha < 255) {
       alpha = 0;
@@ -248,7 +240,6 @@ public class TabView extends View {
 
     // 绘制图标
     if (mIconNormal != null) {
-      //if (mAlphaTransformEnabled) {
       // 静止状态下减少一次重绘
       if (alpha != 255) {
         mIconPaint.reset();
@@ -276,7 +267,6 @@ public class TabView extends View {
       // 如果 textAlign 为 Paint.Align.CENTER，绘制文本时，x 为文本的水平中心 x 坐标，y 为 baseline 值
       // see [amulyakhare/TextDrawable](https://github.com/amulyakhare/TextDrawable)
       // TextDrawable.onDraw()
-      //canvas.drawText(mTitle, mTextBound.left, mTextBound.bottom - mFmi.bottom / 2, mTextPaint);
       canvas.drawText(mTitle, mTextBound.left, (mTextBound.bottom + mTextBound.top) / 2
           - (mTextPaint.descent() + mTextPaint.ascent()) / 2, mTextPaint);
 
@@ -288,16 +278,14 @@ public class TabView extends View {
     }
   }
 
-  /**
-   * @param alpha 透明度，取值 0.0 ~ 1.0
-   */
-  public void setAlphaTransform(float alpha) {
+  @Override
+  public void setAlpha(float alpha) {
     if (alpha < 0 || alpha > 1) {
-      throw new IllegalArgumentException("透明度必须是 0.0 - 1.0");
+      throw new IllegalArgumentException("alpha value must between 0.0f to 1.0f");
     }
 
     mAlpha = alpha;
-    invalidateView();
+    invalidate();
   }
 
   public boolean isAlphaTransformEnabled() {
@@ -306,31 +294,31 @@ public class TabView extends View {
 
   public void setAlphaTransformEnabled(boolean enabled) {
     mAlphaTransformEnabled = enabled;
-    invalidateView();
+    invalidate();
   }
 
   /**
    * 根据当前所在线程更新界面
    */
-  private void invalidateView() {
-    if (Looper.getMainLooper() == Looper.myLooper()) {
-      invalidate();
-    } else {
-      if (Build.VERSION.SDK_INT > 16) {
-        postInvalidateOnAnimation();
-      } else {
-        postInvalidate();
-      }
-    }
-  }
+  //private void invalidateView() {
+  //  if (Looper.getMainLooper() == Looper.myLooper()) {
+  //    invalidate();
+  //  } else {
+  //    if (Build.VERSION.SDK_INT > 16) {
+  //      postInvalidateOnAnimation();
+  //    } else {
+  //      postInvalidate();
+  //    }
+  //  }
+  //}
 
   public void setTitleAttr(String title, int size, int normalColor, int selectedColor) {
     mTitle = title;
     mTextSize = size;
     mTextColorNormal = normalColor;
     mTextColorSelected = selectedColor;
-    calDrawBorder();
-    invalidateView();
+    updateDrawBorder();
+    invalidate();
   }
 
   public String getTitle() {

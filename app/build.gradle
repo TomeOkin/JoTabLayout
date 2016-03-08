@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:design:23.2.0'
     compile project(':lib')
     compile project(':commonlib')
+    compile 'com.android.support:recyclerview-v7:23.2.0'
 }

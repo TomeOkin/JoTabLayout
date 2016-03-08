@@ -22,6 +22,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.tomeokin.common.activity.BaseActivity;
 import com.tomeokin.widget.jotablayout.JoTabLayout;
 import com.tomeokin.widget.jotablayout.listener.OnTabSelectedListener;
@@ -45,7 +47,7 @@ public class TabLayoutActivity extends BaseActivity {
     final JoTabLayout tabLayout3 = (JoTabLayout) findViewById(R.id.tabLayout3);
 
     for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-      mFragments.add(TwoFragment.newInstance("FrameLayout 2 ", i));
+      mFragments.add(ContentFragment.newInstance("FrameLayout 2 ", i));
     }
 
     // 需要指出的是，由于此处的写法，每个 JoTabLayout 的点击会通过 ViewPager 对其他 JoTabLayout 产生影响
@@ -127,6 +129,12 @@ public class TabLayoutActivity extends BaseActivity {
     tabLayout1.setCurrentTab(0);
     tabLayout2.setCurrentTab(0);
     tabLayout3.setCurrentTab(0);
+
+    TextView textView = new TextView(this);
+    textView.setAlpha(1);
+
+    LinearLayout linearLayout = new LinearLayout(this);
+    linearLayout.setAlpha(1);
   }
 
   @Override
@@ -146,7 +154,7 @@ public class TabLayoutActivity extends BaseActivity {
       super(fm);
       fragments = new ArrayList<>();
       for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-        fragments.add(TwoFragment.newInstance("ViewPager", i));
+        fragments.add(ContentFragment.newInstance("ViewPager", i));
       }
     }
 

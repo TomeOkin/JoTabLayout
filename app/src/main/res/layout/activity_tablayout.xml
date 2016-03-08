@@ -33,16 +33,16 @@
       android:orientation="horizontal"
       >
 
-    <com.tomeokin.widget.jotablayout.TabView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        app:tabIconNormal="@drawable/tab_contact_unselect"
-        app:tabIconSelected="@drawable/tab_contact_select"
-        app:tabTitle="联系人"
-        />
+      <com.tomeokin.widget.jotablayout.TabView
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp"
+          app:tabIconNormal="@drawable/tab_contact_unselect"
+          app:tabIconSelected="@drawable/tab_contact_select"
+          app:tabTitle="联系人"
+          />
 
     <com.tomeokin.widget.jotablayout.TabView
         android:layout_width="0dp"

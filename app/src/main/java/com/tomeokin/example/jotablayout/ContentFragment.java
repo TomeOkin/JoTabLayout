@@ -23,39 +23,63 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class OneFragment extends Fragment {
-  //private static final String ARG_INDEX = "index";
-  //private static final String ARG_TEXT = "text";
+public class ContentFragment extends Fragment {
+  private static final String ARG_INDEX = "index";
+  private static final String ARG_TEXT = "text";
 
-  private int mIndex;
   private String mText;
+  private int mIndex;
 
-  public static OneFragment newInstance(String text, int index) {
+  private TextView mTextView;
+
+  public static ContentFragment newInstance(String text, int index) {
+    ContentFragment fragment = new ContentFragment();
     //Bundle args = new Bundle();
     //args.putInt(ARG_INDEX, index);
     //args.putString(ARG_TEXT, text);
-    OneFragment fragment = new OneFragment();
-    fragment.mIndex = index;
-    fragment.mText = text;
     //fragment.setArguments(args);
+    fragment.mText = text;
+    fragment.mIndex = index;
     return fragment;
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //Bundle arguments = getArguments();
-    //mIndex = arguments.getInt(ARG_INDEX, 0);
-    //mText = arguments.getString(ARG_TEXT, "");
+    //setRetainInstance(true);
   }
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_one, container, false);
-    TextView textView = (TextView) view.findViewById(R.id.text);
-    textView.setText(mText + " 第" + mIndex + "页");
+    if (savedInstanceState != null) {
+      mIndex = savedInstanceState.getInt(ARG_INDEX, 0);
+      mText = savedInstanceState.getString(ARG_TEXT, "");
+    }
+
+    View view = inflater.inflate(R.layout.fragment_two, container, false);
+    mTextView = (TextView) view.findViewById(R.id.two_text);
+    mTextView.setText(mText + " 第" + mIndex + "页");
     return view;
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt(ARG_INDEX, mIndex);
+    outState.putString(ARG_TEXT, mText);
+  }
+
+  @Override
+  public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+    super.onViewStateRestored(savedInstanceState);
+
+    //if (savedInstanceState != null) {
+    //  mIndex = savedInstanceState.getInt(ARG_INDEX, 0);
+    //  mText = savedInstanceState.getString(ARG_TEXT, "");
+    //}
+    //
+    //mTextView.setText(mText + " 第" + mIndex + "页");
   }
 }

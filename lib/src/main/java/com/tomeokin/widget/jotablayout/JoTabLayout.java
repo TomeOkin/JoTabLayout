@@ -185,13 +185,11 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
   }
 
   private void initTabsWithListener() {
-    TabView tabView;
+    View tabView;
     for (int i = 0; i < mTabCount; i++) {
-      if (getChildAt(i) instanceof TabView) {
-        tabView = (TabView) getChildAt(i);
-        tabView.setTag(i);
-        tabView.setOnClickListener(null);
-      }
+      tabView = getChildAt(i);
+      tabView.setTag(i);
+      tabView.setOnClickListener(null);
     }
 
     setCurrentTab(0);
@@ -254,29 +252,27 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
   private boolean mTabClickTrigger = true;
 
   private void addOnTabSelectedListener() {
-    TabView tabView;
+    View tabView;
     for (int i = 0; i < mTabCount; i++) {
-      if (getChildAt(i) instanceof TabView) {
-        tabView = (TabView) getChildAt(i);
-        tabView.setOnClickListener(new OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            int position = (int) v.getTag();
+      tabView = getChildAt(i);
+      tabView.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          int position = (int) v.getTag();
 
-            if (mCurrentTab != position) {
-              mTabClickTrigger = true;
-              setCurrentTab(position);
-              if (mListener != null) {
-                mListener.onTabSelect(v, position);
-              }
-            } else {
-              if (mListener != null) {
-                mListener.onTabReselect(v, position);
-              }
+          if (mCurrentTab != position) {
+            mTabClickTrigger = true;
+            setCurrentTab(position);
+            if (mListener != null) {
+              mListener.onTabSelect(v, position);
+            }
+          } else {
+            if (mListener != null) {
+              mListener.onTabReselect(v, position);
             }
           }
-        });
-      }
+        }
+      });
     }
   }
 
@@ -299,8 +295,8 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     resetState();
     mLastTab = mCurrentTab;
     mCurrentTab = index;
-    TabView currentTabView = (TabView) getChildAt(mCurrentTab);
-    currentTabView.setAlphaTransform(1);
+    View currentTabView = getChildAt(mCurrentTab);
+    currentTabView.setAlpha(1);
 
     // change indicator
     if (mIndicatorShape != SHAPE_NONE && mIndicatorAnimEnabled) {
@@ -311,10 +307,10 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
   }
 
   private void resetState() {
-    TabView view;
+    View view;
     for (int i = 0; i < mTabCount; i++) {
-      view = (TabView) getChildAt(mCurrentTab);
-      view.setAlphaTransform(0);
+      view = getChildAt(mCurrentTab);
+      view.setAlpha(0);
     }
   }
 
@@ -364,12 +360,12 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
     // onScroll: position = min(source, dest), positionOffset = [0, 1]
     // from 0 to 1: position = 0
     // from 1 to 0: position = 0
-    TabView view;
+    View view;
     if (positionOffset > 0) {
-      view = (TabView) getChildAt(position);
-      view.setAlphaTransform(1 - positionOffset);
-      view = (TabView) getChildAt(position + 1);
-      view.setAlphaTransform(positionOffset);
+      view = getChildAt(position);
+      view.setAlpha(1 - positionOffset);
+      view = getChildAt(position + 1);
+      view.setAlpha(positionOffset);
     }
   }
 
@@ -377,8 +373,8 @@ public class JoTabLayout extends LinearLayout implements ValueAnimator.AnimatorU
    * 如果需要指示器滑动效果，在 onPageScrolled 中调用，参数命名相对应
    */
   public void scrollIndicatorTo(int position, float positionOffset) {
-    TabView tabView = (TabView) getChildAt(position);
-    TabView currentView = (TabView) getChildAt(mCurrentTab);
+    View tabView = getChildAt(position);
+    View currentView = getChildAt(mCurrentTab);
 
     // 修正默认的增量
     mIndicatorAnimOffset = tabView.getLeft()
