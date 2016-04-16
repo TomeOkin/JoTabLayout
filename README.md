@@ -108,7 +108,7 @@ allprojects {
 }
 
 dependencies {
-  compile 'com.tomeokin.widget.jotablayout:jotablayout:1.0.3@aar'
+  compile 'com.tomeokin.widget.jotablayout:jotablayout:1.0.3'
 }
 ```
 
