@@ -1,1 +1,1 @@
-include ':app', ':lib', ':commonlib'
+include ':app', ':jotablayout'

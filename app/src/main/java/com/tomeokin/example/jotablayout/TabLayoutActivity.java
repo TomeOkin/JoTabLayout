@@ -24,7 +24,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.tomeokin.common.activity.BaseActivity;
 import com.tomeokin.widget.jotablayout.JoTabLayout;
 import com.tomeokin.widget.jotablayout.listener.OnTabSelectedListener;
 import java.util.ArrayList;

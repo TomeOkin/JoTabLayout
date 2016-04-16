@@ -93,6 +93,7 @@ mTabLayout.applyConfigurationWithViewPager(mViewPager, alphaTransformEnabled);
 
 *The above example extract from activity_tablayout.xml and TabLayoutActivity.java, a little changed.*
 
+If you has run the demo, you may meet some problem with the anim bounce. The result why it will happen I had response in TabLayoutActivity. This is just bad-side of the demo for show more effect. If one JoTabLayout change the viewpager state, other JoTabLayout will effect the result.
 
 
 Download
@@ -107,7 +108,7 @@ allprojects {
 }
 
 dependencies {
-  compile 'com.tomeokin.widget.jotablayout:lib:1.0.2@aar'
+  compile 'com.tomeokin.widget.jotablayout:jotablayout:1.0.3@aar'
 }
 ```
 
