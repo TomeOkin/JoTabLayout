@@ -10,5 +10,4 @@ env:
   global:
     secure: x6U05xA76b8MYqJ6jQEyaiWU8JkoR1BtA2R40mv4qkPjWq9QAKUZRbraufLCN/g8vLReZ/HUPqsi8hxyXW21xTnkVjLzeWWKHBafXN5QiaV41V+pDpYOcmpQgmDx/FXqfFx7UP2izqE4mzPtyXvJkf+cEqggkWcfPupp5BpfQkNzO3Xv6lSiVTWRYfmd9RgKjk2XPXFrLiFR2BVJShHyCMlzBcLpKvuXGqaqWtX3IPU6kVYEabowO0hxH1S0MEZe4dPZx/c/u3XrQwCRlzROTNZ1ji1smAdsYESDHO4q/eIqXhG1v9x/BSybkxf0cboc/1Byv2nalE1twQn188Viab/WLsu8fzOEu1vPEofDaU6Yrbpd2H5w6RGYf0kIetv8aBA8UOoJWPEDVtGC+cXXFzg+TvDStVICiU64gxIk3R2AHK8Jz1NtADEfUGjOyUOmBcmWh2+H0yN6nXw9SjbsLwxcudl5Qia/BTF04lz2UBOeamy742xbjvDvSVfKd8lBwerUrpLqoNFT496ynnyZGmmN3G7a0EOMIo+3aeVRBEedmWpZXiM1Z2gKIEzo+M6D+zYvEpm0NwIxPKawq866mS7SOc7uNapGdPzbJfeHqDxJOTgIbSEoliU2S2bM5TKjiM3HIVHWGUr9Vrp9iwvKrdLI+bIPAM+8rAwwy63Vy9g=
 before_install:
-- openssl aes-256-cbc -K $encrypted_e59b7992228b_key -iv $encrypted_e59b7992228b_iv
-  -in jo.jks.enc -out jo.jks -d
+- openssl aes-256-cbc -K $encrypted_e59b7992228b_key -iv $encrypted_e59b7992228b_iv -in jo.jks.enc -out jo.jks -d
