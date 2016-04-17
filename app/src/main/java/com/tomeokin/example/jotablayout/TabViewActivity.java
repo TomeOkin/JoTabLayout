@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
-import com.tomeokin.widget.jotablayout.TabView;
+import com.tomeokin.widget.jotablayout2.TabView;
 
 public class TabViewActivity extends AppCompatActivity {
 

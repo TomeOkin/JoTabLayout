@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JoTabLayout.iml" filepath="$PROJECT_DIR$/JoTabLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jotablayout/jotablayout.iml" filepath="$PROJECT_DIR$/jotablayout/jotablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jotablayout2/jotablayout2.iml" filepath="$PROJECT_DIR$/jotablayout2/jotablayout2.iml" />
     </modules>
   </component>
 </project>

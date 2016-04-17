@@ -108,10 +108,11 @@ allprojects {
 }
 
 dependencies {
-  compile 'com.tomeokin.widget.jotablayout:jotablayout:1.0.3'
+  compile 'com.tomeokin.widget.jotablayout2:jotablayout:1.0.1'
 }
 ```
 
+* waitting for push to jcenter *
 
 
 License

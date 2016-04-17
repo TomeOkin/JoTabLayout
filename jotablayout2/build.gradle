@@ -1,0 +1,115 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def siteUrl = 'https://github.com/tomeokin/JoTabLayout'
+def gitUrl = 'https://github.com/tomeokin/JoTabLayout.git'
+
+group = "com.tomeokin.widget.jotablayout2"
+version = "1.0.2"
+
+android {
+  compileSdkVersion 23
+  buildToolsVersion "23.0.3"
+
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 23
+    versionCode 6
+    versionName "1.0.2"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  testCompile 'junit:junit:4.12'
+  compile 'com.android.support:support-v4:23.3.0'
+  compile 'com.android.support:support-annotations:23.3.0'
+}
+
+install {
+  repositories.mavenInstaller {
+    // This generates POM.xml with proper parameters
+    pom {
+      project {
+        packaging 'aar'
+        name 'JoTabLayout2'
+        url siteUrl
+        licenses {
+          license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+        developers {
+          developer {
+            id 'tomeokin'
+            name 'TomeOkin'
+            email 'tome.okin@gmail.com'
+          }
+        }
+        scm {
+          connection gitUrl
+          developerConnection gitUrl
+          url siteUrl
+        }
+      }
+    }
+  }
+}
+
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+  source = android.sourceSets.main.java.srcDirs
+  classpath += configurations.compile
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+  options.encoding = "utf-8"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives javadocJar
+  archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+  user = properties.getProperty("bintray.user")
+  key = properties.getProperty("bintray.apikey")
+  configurations = ['archives']
+  pkg {
+    repo = "maven"
+    name = "JoTabLayout2" //发布到JCenter上的项目名字
+    version {
+      name = '1.0.2'
+      desc = 'A TabLayout without a dependent of ViewPager.'
+      vcsTag = '1.0.2'
+    }
+    websiteUrl = siteUrl
+    vcsUrl = gitUrl
+    licenses = ["Apache-2.0"]
+    publish = true
+  }
+}
